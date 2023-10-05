@@ -7,7 +7,7 @@ from folium.plugins import MarkerCluster
 
 
 class Map:
-    def __init__(self, path_to_save: str = './map.html', path_to_data: str = 'Records.json'):
+    def __init__(self, path_to_save: str = './map.html', path_to_data: str = 'Records.json') -> None:
         if not path_to_save.endswith('.html'):
             self.path_to_save = './map.html'
         else:
@@ -24,7 +24,7 @@ class Map:
 
         return data
 
-    def analysis(self):
+    def analysis(self) -> None:
         self.data = []
         data = self._load_data
 
@@ -48,7 +48,7 @@ class Map:
                 'dt': date
             })
 
-    def create_map(self):
+    def create_map(self) -> None:
         coordinates_of_center = self.data[0]['coordinates']
         self.map = folium.Map(location=coordinates_of_center, tiles=None, min_zoom=2, max_zoom=22, zoom_start=2, )
 
@@ -81,7 +81,7 @@ class Map:
 
         folium.LayerControl(collapsed=False).add_to(self.map)
 
-    def open(self):
+    def open(self) -> None:
         print(f'Created {len(self.data)} points')
         # self.map.show_in_browser()
         self.map.save(self.path_to_save)
